@@ -34,8 +34,10 @@ done < "$ENTSTAT_FILE"
 
 # Output the results
 > "$OUTPUT_FILE"
-for ((i=0; i<adapter_count; i++)); do
-  echo "${adapters[i]}: ${vlans[i]}" >> "$OUTPUT_FILE"
+i=0
+while [ $i -lt $adapter_count ]; do
+  echo "${adapters[$i]}: ${vlans[$i]}" >> "$OUTPUT_FILE"
+  i=$((i+1))
 done
 
 echo "VLAN IDs grouped by adapter written to $OUTPUT_FILE" 

@@ -22,9 +22,10 @@ while IFS= read -r line; do
     continue
   fi
   if [ $vlan_section -eq 1 ]; then
-    if echo "$line" | grep -q '^[a-zA-Z0-9][a-zA-Z0-9]*:'; then
-      adapter=$(echo "$line" | awk -F: '{print $1}')
-      vlan_ids=$(echo "$line" | awk -F: '{print $2}' | xargs)
+    clean_line=$(echo "$line" | sed 's/^ *//')
+    if echo "$clean_line" | grep -q '^[a-zA-Z0-9][a-zA-Z0-9]*:'; then
+      adapter=$(echo "$clean_line" | awk -F: '{print $1}')
+      vlan_ids=$(echo "$clean_line" | awk -F: '{print $2}' | xargs)
       adapters[adapter_count]="$adapter"
       vlans[adapter_count]="$vlan_ids"
       adapter_count=$((adapter_count+1))

@@ -1,15 +1,41 @@
 #!/bin/ksh
-# check_vlan.sh: Extract VLAN IDs from a sample entstat file and output to test_ent.txt
+# check_vlan.sh: Group VLAN IDs by adapter using ksh arrays and output to test_ent.txt
 
 # Input entstat file (simulate /tmp/enstat.{sea_adapter}.{sea_adapter})
 ENTSTAT_FILE="$(dirname $0)/sample/entstat.ent28.ent28"
 OUTPUT_FILE="test_ent.txt"
 
-awk '
-  /VLAN Ids :/                               { v_a_get_vlan_ids=1; v_a_get_flags=0 }
-  /Real Side Statistics:/                    { v_a_get_vlan_ids=0 }
-  /ent[0-9]*:/                               { if (v_a_get_vlan_ids == 1) {$1=""; v_all_vlan_id=v_all_vlan_id $0} }
-  END { print v_all_vlan_id }
-' "$ENTSTAT_FILE" > "$OUTPUT_FILE"
+# Arrays to hold adapter names and their VLAN IDs
+set -A adapters
+set -A vlans
 
-echo "VLAN IDs extracted to $OUTPUT_FILE" 
+vlan_section=0
+adapter_count=0
+
+while IFS= read -r line; do
+  if echo "$line" | grep -q "VLAN Ids :"; then
+    vlan_section=1
+    continue
+  fi
+  if echo "$line" | grep -q "Real Side Statistics:"; then
+    vlan_section=0
+    continue
+  fi
+  if [ $vlan_section -eq 1 ]; then
+    if echo "$line" | grep -q '^[a-zA-Z0-9][a-zA-Z0-9]*:'; then
+      adapter=$(echo "$line" | awk -F: '{print $1}')
+      vlan_ids=$(echo "$line" | awk -F: '{print $2}' | xargs)
+      adapters[adapter_count]="$adapter"
+      vlans[adapter_count]="$vlan_ids"
+      adapter_count=$((adapter_count+1))
+    fi
+  fi
+done < "$ENTSTAT_FILE"
+
+# Output the results
+> "$OUTPUT_FILE"
+for ((i=0; i<adapter_count; i++)); do
+  echo "${adapters[i]}: ${vlans[i]}" >> "$OUTPUT_FILE"
+done
+
+echo "VLAN IDs grouped by adapter written to $OUTPUT_FILE" 

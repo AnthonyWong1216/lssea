@@ -1,0 +1,100 @@
+Device Type: Shared Ethernet Adapter
+Hardware Address: 34:80:0d:76:8c:92
+Elapsed Time: 0 days 0 hours 2 minutes 49 seconds
+
+Transmit Statistics:                          Receive Statistics:
+--------------------                          -------------------
+Packets: 170                                  Packets: 0
+Bytes: 120020                                 Bytes: 0
+Interrupts: 0                                 Interrupts: 0
+Transmit Errors: 0                            Receive Errors: 0
+Packets Dropped: 0                            Packets Dropped: 0
+                                              Bad Packets: 0
+Max Packets on S/W Transmit Queue: 0         
+S/W Transmit Queue Overflow: 0
+Current S/W+H/W Transmit Queue Length: 0
+
+Elapsed Time: 0 days 0 hours 0 minutes 0 seconds
+Broadcast Packets: 170                        Broadcast Packets: 0
+Multicast Packets: 0                          Multicast Packets: 0
+No Carrier Sense: 0                           CRC Errors: 0
+DMA Underrun: 0                               DMA Overrun: 0
+Lost CTS Errors: 0                            Alignment Errors: 0
+Max Collision Errors: 0                       No Resource Errors: 0
+Late Collision Errors: 0                      Receive Collision Errors: 0
+Deferred: 0                                   Packet Too Short Errors: 0
+SQE Test: 0                                   Packet Too Long Errors: 0
+Timeout Errors: 0                             Packets Discarded by Adapter: 0
+Single Collision Count: 0                     Receiver Start Count: 0
+Multiple Collision Count: 0
+Current HW Transmit Queue Length: 0
+
+General Statistics:
+-------------------
+No mbuf Errors: 0
+Adapter Reset Count: 2
+Adapter Data Rate: 0
+Driver Flags: Up Broadcast Running 
+	Simplex 64BitSupport ChecksumOffload 
+	LargeSend DataRateSet SEA 
+	VIRTUAL_PORT 
+
+--------------------------------------------------------------
+Statistics for adapters in the Shared Ethernet Adapter ent8
+--------------------------------------------------------------
+Number of adapters: 3
+SEA Flags: 00001133
+    < THREAD >
+    < LARGESEND >
+    < LARGE_RECEIVE >
+    < ACCOUNTING >
+VLAN Ids :
+    ent7: 98 678 789
+    ent6: 99 123 456
+Real Side Statistics:
+    Packets received: 0
+    Packets bridged: 0
+    Packets consumed: 0
+    Packets fragmented: 0
+    Packets transmitted: 0
+    Packets dropped: 0
+    Packets dropped(VlanId) : 0
+    Packets dropped(Reserved address): 0
+Virtual Side Statistics:
+    Packets received: 0
+    Packets bridged: 0
+    Packets consumed: 0
+    Packets fragmented: 0
+    Packets transmitted: 0
+    Packets dropped: 0
+    Packets dropped(VlanId) : 0
+Other Statistics:
+    Output packets generated: 0
+    Output packets dropped: 0
+    Device output failures: 0
+    Memory allocation failures: 0
+    ICMP error packets sent: 0
+    Non IP packets larger than MTU: 0
+    Thread queue overflow packets: 0
+
+
+	SEA THREADS INFORMATION
+High Availability Statistics:
+    Control Channel PVID: 4095
+    Control Packets in: 0
+    Control Packets out: 170
+Type of Packets Received:
+    Keep-Alive Packets: 0
+    Recovery Packets: 0
+    Notify Packets: 0
+    Limbo Packets: 0
+    State: LIMBO
+    Bridge Mode: None
+    Number of Times Server became Backup: 0
+    Number of Times Server became Primary: 0
+    Number of Times Server became Flipflop: 0
+    High Availability Mode: Sharing
+    Priority: 1
+--------------------------------------------------------------
+Real Adapter: ent1
+

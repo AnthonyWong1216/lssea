@@ -48,6 +48,14 @@ echo "Testing f_norm function:"
 echo "f_norm of v_table_veth_details[5] = [$(echo "${v_table_veth_details[5]}" | sed 's/^[ ]*//;s/[ ]*$//g' | sed 's/\n//g')]"
 
 echo ""
+echo "Testing printf format:"
+v_vlan_ids=$(echo "${v_table_veth_details[5]}" | sed 's/^[ ]*//;s/[ ]*$//g' | sed 's/\n//g')
+v_vlan_count=${#v_vlan_ids}
+echo "v_vlan_ids = [$v_vlan_ids]"
+echo "v_vlan_count = $v_vlan_count"
+echo "printf format: %-${#v_vlan_ids}s"
+
+echo ""
 echo "================================================"
 echo "Expected VLAN Tag IDs from file: 123 456"
 echo "================================================" 

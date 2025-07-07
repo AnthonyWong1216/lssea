@@ -53,7 +53,17 @@ v_vlan_ids=$(echo "${v_table_veth_details[5]}" | sed 's/^[ ]*//;s/[ ]*$//g' | se
 v_vlan_count=${#v_vlan_ids}
 echo "v_vlan_ids = [$v_vlan_ids]"
 echo "v_vlan_count = $v_vlan_count"
-echo "printf format: %-${#v_vlan_ids}s"
+echo "printf format: %-20s"
+
+echo ""
+echo "Testing exact printf from script:"
+printf "%-7s %-4s %-30s %-8s %-6s %-13s %-15s %-7s %-20s\n" "adapter" "slot" "hardware_path" "priority" "active" "port_vlan_id" "vswitch" "mode" "vlan_tags_ids"
+printf "%-7s %-4s %-30s %-8s %-6s %-13s %-15s %-7s %-20s\n" "-------" "----" "-------------" "--------" "------" "------------" "-------" "----" "--------------------"
+printf "%-7s %-4s %-30s %-8s %-6s %-13s %-15s %-7s %-20s\n" "ent6" "C41" "U9105.22A.7892A71-V1-C41-T0" "1" "True" "99" "ETHERNET0" "VEB" "${v_vlan_ids}"
+
+echo ""
+echo "Testing with different widths:"
+printf "%-7s %-4s %-30s %-8s %-6s %-13s %-15s %-7s %-25s\n" "ent6" "C41" "U9105.22A.7892A71-V1-C41-T0" "1" "True" "99" "ETHERNET0" "VEB" "${v_vlan_ids}"
 
 echo ""
 echo "================================================"
